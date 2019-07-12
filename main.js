@@ -4,6 +4,17 @@
 geotab.addin.addInGeotabDrivePrivacy = function () {
     'use strict';
 
+    //Highlight 'Information' section
+    var personal =document.getElementById("personal");
+    var business =document.getElementById("business");
+
+    function highlightInfo(activeStatus, inactiveStatus) {
+        activeStatus.classList.remove("panel");
+        activeStatus.classList.add("infoSelected");
+        inactiveStatus.classList.remove("infoSelected");
+        inactiveStatus.classList.add("panel");
+    }
+
     // the root container
     var elAddin,
         api,
@@ -45,13 +56,18 @@ geotab.addin.addInGeotabDrivePrivacy = function () {
                     var tripType = result[result.length - 1].tripType;
                     console.log("getDeviceStatus tripType ", tripType);
                     if (tripType === "Unknown") {
-                        tripType = "Not Private"; //Changed Business to Not Private
+                        tripType = "Business";           
+                        highlightInfo(business, personal);
+                    }
+                    if (tripType === "Private") {
+                        tripType = "Personal";
+                        highlightInfo(personal, business);
                     }
                     if(notifyChange && tripType !== currentPrivacyStatus.innerHTML) {
                         notify('Driver status changed to: ' + tripType);
                     }
                     currentPrivacyStatus.innerHTML = tripType;
-
+                    console.log(tripType + " info highlighted");  
                 }
 
             }, function (error) {
@@ -97,7 +113,7 @@ geotab.addin.addInGeotabDrivePrivacy = function () {
             console.log(Date.now().toISOString() + ' ' + driveAddInName + ': ' + 'periodicPrivacyStatusCheck');
             updateStatusUI(true);
             window.setTimeout(periodicPrivacyStatusCheck, msTime);
-        };
+        };   
 
     return {
         /**

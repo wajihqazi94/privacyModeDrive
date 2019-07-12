@@ -6,29 +6,38 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AddInGeotabDrivePrivacy</title>
+  <title>Privacy Mode</title>
 
   <link rel="stylesheet" href="styles/main.css">
 
-  <script src="main.js"></script>
+  <script src="scripts/main.js"></script>
 
 </head>
 
 <body>
+
 
   <div id="addInGeotabDrivePrivacy" class="hidden">
 	  <h2>Current Status is <span id="currentStatus">Not set</span></h2>
 	<h3 class="panel-title">Select Status:</h3>
 		<ul class="menu-list">
 			<li class="status" data-status="Private">
-				<a><i class="select-private"></i><span>Private</span></a>
+				<a><i class="select-personal"></i><span>Personal</span></a>
 			</li>
 			<li class="status" data-status="Unknown">
-          			<a><i class="select-business"></i><span>Not Private</span></a>
+          			<a><i class="select-business"></i><span>Business</span></a>
 			</li>
 		</ul>
-
   </div>
+
+  <div id="info">Information</div>
+  
+  <div id="personal" class="panel">
+	  <p><strong>Personal:</strong> Vehicle location related data such as position, speed and trips is restricted and not available in MyGeotab. Access to this data can be requested only in case of an emergency and if allowed by your company policies. </p>
+	</div> 
+	<div id="business" class="panel">
+	  <p><strong>Business:</strong> Vehicle location related data such as position, speed and trips is available in MyGeotab and subject to your company policies for access.</p>
+   </div>
 
   <div class="spinner-container hidden">
 	  <div class="ispinner ispinner--gray ispinner--large ispinner--animating">
@@ -46,7 +55,7 @@
 		  <div class="ispinner__blade"></div>
 	  </div>
   </div>
-
+  
 </body>
 
 </html>
